@@ -26,3 +26,9 @@ boxplot(msleep$sleep_total ~ msleep$vore, ylab = "Sleep Totals (hours)",
 # although there is overlap between the plots and error bars, indicating that the
 # results are not significant. Carnivores, herbivores, and omnivores sleep about
 # the same amount on average, although there is wide variation between the ranges. 
+
+# Create plot of natural log of body weight and sleep cycle
+plot(log(msleep$bodywt[msleep$sleep_cycle != "NA"], ), 
+     msleep$sleep_cycle[msleep$sleep_cycle != "NA"], ylab = "Sleep Cycle (hrs)",
+     xlab = "Body Weight (kg)")
+
