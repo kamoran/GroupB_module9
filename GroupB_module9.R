@@ -25,10 +25,12 @@ boxplot(msleep$sleep_total ~ msleep$vore, ylab = "Sleep Totals (hours)",
 # The insect eating mammals appear to sleep more than the other other diet types,
 # although there is overlap between the plots and error bars, indicating that the
 # results are not significant. Carnivores, herbivores, and omnivores sleep about
-# the same amount on average, although there is wide variation between the ranges. 
+# the same amount on average, although there is wide variation between the ranges.
+# Omnivores exhibit less variation in total sleep hours between species, but there
+# are some observations well above the normal range (4 "outliers" to investigate)
 
 # Create plot of natural log of body weight and sleep cycle
-plot(log(msleep$bodywt[msleep$sleep_cycle != "NA"], ), 
+plot(log(msleep$bodywt[msleep$sleep_cycle != "NA"]), 
      msleep$sleep_cycle[msleep$sleep_cycle != "NA"], ylab = "Sleep Cycle (hrs)",
      xlab = "Body Weight (kg)")
 
