@@ -34,3 +34,43 @@ plot(log(msleep$bodywt[msleep$sleep_cycle != "NA"]),
      msleep$sleep_cycle[msleep$sleep_cycle != "NA"], ylab = "Sleep Cycle (hrs)",
      xlab = "Body Weight (kg)")
 
+## Produce the same with ggplot() with separate panels for conservation status,
+## excluding species with incomplete data, including a trend line for each
+
+## Add a natural log column for easier ggplot use
+msleep$ln_wt <- log(msleep$bodywt)
+
+head(msleep)
+str(msleep)
+summary(msleep)
+
+## I found a new way to remove rows with any NAs in them, useful for this question
+ms.alldata <- msleep[complete.cases(msleep), ]
+
+ms.alldata
+str(ms.alldata)
+summary(ms.alldata) 
+## checking that complete.cases worked correctly
+
+ggplot(data = ms.alldata, aes(x = ln_wt, y = sleep_cycle, group = conservation)) +
+  geom_point() +
+  facet_wrap( ~ conservation) +
+  stat_smooth(method="lm", se=F)
+
+## The relationship between weight and sleep cycle length is positive in the first
+## plot. This trend is the same for species within the domesticated and least concern
+## conservation categories, though the domesticated relationship is much steeper
+## than in the general plot and the least concern plot. For endangered, vulnerable,
+## and near threatened species, there is not enough data to discern a trend. This
+## would make sense because we have more abundant lc and domesticated animals to 
+## observe, and domesticated animals span in size from small to pretty large, so 
+## the trend makes sense. In this data the following are true:
+
+dom <- msleep[msleep$conservation == "domesticated", ]
+lc <- msleep[msleep$conservation == "lc", ]
+max(dom$bodywt, na.rm = TRUE) #600 kg max domesticated weight
+max(lc$bodywt, na.rm = TRUE) #85 kg max lc weight
+
+## which also verifies the steepness of the trend in comparison. 
+
+
