@@ -104,3 +104,9 @@ ggplot(data = brainbydiet, aes(x=vore, y=brain_body_mean)) +
   geom_errorbar(aes(ymin = brain_body_mean - brain_body_se,
                     ymax = brain_body_mean + brain_body_se))
 ## plotting to visually examine table results
+
+## Contributions: Katie created and began the assignment repo, wrote code for
+## first question and first part of second question, and made multiple commits
+## which were pushed to GitHub. She shared the repo with Erica, who edited code,
+## started with the ggplot of question 2, and coded question 3, also with 
+## multiple commits pushed to GitHub.
