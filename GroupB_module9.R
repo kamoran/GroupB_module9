@@ -93,3 +93,14 @@ brain_body_ratio <- function(x, y, z){
   build$vore <- row.names(build)
   return(build)
   }
+
+brain_body_ratio(msleep3$brainwt, msleep3$bodywt, msleep3$vore)
+
+brainbydiet <- brain_body_ratio(msleep3$brainwt, msleep3$bodywt, msleep3$vore)
+## final result table
+
+ggplot(data = brainbydiet, aes(x=vore, y=brain_body_mean)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = brain_body_mean - brain_body_se,
+                    ymax = brain_body_mean + brain_body_se))
+## plotting to visually examine table results
