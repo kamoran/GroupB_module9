@@ -19,7 +19,7 @@ length(unique(msleep$vore))
 # visually determine whether sleep totals vary by diet type
 msleep2 <- msleep[!is.na(msleep$vore), ] #remove rows with no "vore" data
 unique(msleep2$vore) # no longer NAs in vore column
-boxplot(msleep$sleep_total ~ msleep$vore, ylab = "Sleep Totals (hours)", 
+boxplot(msleep2$sleep_total ~ msleep2$vore, ylab = "Sleep Totals (hours)", 
         xlab = "Diet Type")
 
 # The insect eating mammals appear to sleep more than the other other diet types,
@@ -71,6 +71,17 @@ lc <- msleep[msleep$conservation == "lc", ]
 max(dom$bodywt, na.rm = TRUE) #600 kg max domesticated weight
 max(lc$bodywt, na.rm = TRUE) #85 kg max lc weight
 
-## which also verifies the steepness of the trend in comparison. 
+## which also somewhat verifies the steepness of the trend in comparison. 
 
+## How does the ratio of brain weight to body weight vary by diet type?
+msleep3 <- msleep2[complete.cases(msleep2[ ,10:11]), ] ## removes NAs in bodywt and brainwt
+summary(msleep3)
+
+se <- function(x){ 
+  
+  sem <- sd(x)/sqrt(length(x))
+  return(sem)
+  }
+
+se ## created function for standard error for use in next function
 
