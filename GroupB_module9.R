@@ -85,3 +85,11 @@ se <- function(x){
 
 se ## created function for standard error for use in next function
 
+brain_body_ratio <- function(x, y, z){
+  brain_body_mean <- as.data.frame(tapply(x/y, z, mean, na.rm = TRUE))
+  brain_body_se <- as.data.frame(tapply(x/y, z, se))
+  build <- cbind(brain_body_mean, brain_body_se)
+  colnames(build) <- c("brain_body_mean", "brain_body_se")
+  build$vore <- row.names(build)
+  return(build)
+  }
